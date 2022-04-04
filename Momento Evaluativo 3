@@ -1,0 +1,37 @@
+def main():
+    U={5,10,15,20,25,30,35,40}
+    print(f"U={U}")
+    A = {40, 15, 20, 10}
+    print(f"A={A}")
+    B = {15, 20, 5, 30}
+    print(f"B={B}")
+    C = {10, 20, 5, 25}
+    print(f"C={C}")
+    difersim = A ^ B
+    print(f"AꚚB={difersim}")
+    complemC = U - C
+    print(f"Complemento de C respecto a U={complemC}")
+
+    from matplotlib import pyplot as plt
+    from matplotlib_venn import venn3
+    print(f"calcule el resultado de (U-C)-(AꚛB)")
+    resultado1 = complemC - difersim
+    print(f"(U-C)-(AꚛB)= {resultado1}")
+    v = venn3((1, 1, 1,1,1,1,1))
+
+
+    plt.suptitle("Conjunto solución= {15,35}")
+    plt.title("U = {35}")
+
+    v.get_label_by_id("111").set_text(A & B & C)
+    v.get_label_by_id("100").set_text(A-(A & B & C)-((A & C)-(A & B & C))-(A&B))
+    v.get_label_by_id("101").set_text((A & C)-(A & B & C))
+    v.get_label_by_id("011").set_text((B&C)-((A & B & C)))
+    v.get_label_by_id("110").set_color("#1CFF00")
+    v.get_label_by_id("110").set_text((A&B)-((A & B & C)))
+    v.get_label_by_id("010").set_text(B - (A&B)- (B&C)-(A&B&C))
+    v.get_label_by_id("001").set_text(C - (C & A) - (B & C) - (A & B & C))
+    plt.show()
+
+
+main()
